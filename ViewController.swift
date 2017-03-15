@@ -8,17 +8,19 @@
 
 import UIKit
 
-var temp = ""
+
 class ViewController: UIViewController {
-   
+    
+    var flag = 0
+    var s:String = ""
 
     @IBOutlet weak var x: UITextField!
-    @IBOutlet weak var y: UITextField!
-    @IBOutlet weak var z: UITextField!
    
     @IBAction func one(_ sender: UIButton) {
+
         x.text = x.text! + "1"
     }
+
     @IBAction func two(_ sender: UIButton) {
         x.text = x.text! + "2"
     }
@@ -47,14 +49,56 @@ class ViewController: UIViewController {
         x.text = x.text! + "0"
     }
     @IBAction func add(_ sender: UIButton) {
-        
+        s = x.text!
+        x.text=""
+        flag = 1
     }
     @IBAction func subtract(_ sender: UIButton) {
+        s = x.text!
+        x.text=""
+        flag = 2
     }
     @IBAction func multiply(_ sender: UIButton) {
+        s = x.text!
+        x.text=""
+        flag = 3
     }
     @IBAction func divide(_ sender: UIButton) {
+        s = x.text!
+        x.text=""
+        flag = 4
     }
+    @IBAction func value(_ sender: UIButton) {
+        switch flag {
+        case 1:
+            var temp:Int
+            temp = Int(s)! + Int(x.text!)!
+            x.text="\(temp)"
+        
+        case 2:
+            var temp: Int
+            temp = Int(s)! - Int(x.text!)!
+            x.text = "\(temp)"
+            
+        case 3:
+            var temp: Int
+            temp = Int(s)! * Int(x.text!)!
+            x.text = "\(temp)"
+            
+        case 4:
+            var temp: Int
+            temp = Int(s)! / Int(x.text!)!
+            x.text = "\(temp)"
+        default:
+            x.text = x.text
+        }
+    }
+
+    @IBAction func del(_ sender: UIButton) {
+          x.text = ""
+    }
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
